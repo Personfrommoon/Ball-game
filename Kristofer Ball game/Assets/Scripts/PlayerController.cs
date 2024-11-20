@@ -6,8 +6,8 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public float turnSpeed = 25.0f;
+    public float speed;
+    public float turnSpeed;
     public TMP_Text scoreText;
     public TMP_Text winText;
     public GameObject Wall;
@@ -31,30 +31,16 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.AddForce(movement * speed);
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.AddForce(Vector3.up * speed);
-        }
-
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            rb.AddForce(Vector3.down * speed);
-        }
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.Rotate(Vector3.up, -turnSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey(KeyCode.E))
-        {
-            transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime);
-        }
-
         if (Input.GetKey(KeyCode.R))
         {
             Application.LoadLevel(Application.loadedLevel);
         }
+        if(Input.GetKeyDown(KeyCode.Escape))
+
+        {
+            Application.Quit();
+        }
+
     }
 
     void OnTriggerEnter(Collider other)
